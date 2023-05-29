@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Web Application</title>
+    <!-- <style>
+        /* Add your custom CSS styles here */
+        .hidden {
+            display: none;
+        }
+    </style> -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Registration Form -->
+    <h2>Register</h2>
+    <form id="registerForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- Open/Close Bank Account Form -->
+    <h2 class="hidden">Open/Close Bank Account</h2>
+    <form id="bankAccountForm" class="hidden">
+        <label for="accountType">Account Type:</label>
+        <select id="accountType">
+            <option value="open">Open</option>
+            <option value="close">Close</option>
+        </select>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Apply for Credit Card Form -->
+    <h2 class="hidden">Apply for Credit Card</h2>
+    <form id="creditCardForm" class="hidden">
+        <label for="cardType">Card Type:</label>
+        <select id="cardType">
+            <option value="visa">Visa</option>
+            <option value="mastercard">Mastercard</option>
+        </select>
+        <br>
+        <button type="submit">Apply</button>
+    </form>
+
+    <!-- Apply for Loan Form -->
+    <h2 class="hidden">Apply for Loan</h2>
+    <form id="loanForm" class="hidden">
+        <label for="loanType">Loan Type:</label>
+        <select id="loanType">
+            <option value="personal">Personal</option>
+            <option value="car">Car</option>
+        </select>
+        <br>
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" id="loanAmount" required>
+        <br>
+        <button type="submit">Apply</button>
+    </form>
+
+    <!-- View Bank Account Transactions -->
+    <h2 class="hidden">Bank Account Transactions</h2>
+    <ul id="transactions" class="hidden"></ul>
+
+    <!-- Credit Card Transactions -->
+<h2 class="hidden">Credit Card Transactions</h2>
+<ul id="creditCardTransactions" class="hidden"></ul>
+
+<!-- Credit Card Points and Cashback -->
+<h2 class="hidden">Credit Card Points and Cashback</h2>
+<p id="points" class="hidden"></p>
+<form id="redeemPointsForm" class="hidden">
+    <label for="redeemAmount">Redeem Points:</label>
+    <input type="number" id="redeemAmount" required>
+    <button type="submit">Redeem</button>
+</form>
+
+<!-- Pay Credit Card Bill -->
+<h2 class="hidden">Pay Credit Card Bill</h2>
+<form id="payBillForm" class="hidden">
+    <label for="paymentAmount">Payment Amount:</label>
+    <input type="number" id="paymentAmount" required>
+    <br>
+    <button type="submit">Pay</button>
+</form>
+
+<!-- Transfer Money -->
+<h2 class="hidden">Transfer Money to Other Bank Account</h2>
+<form id="transferForm" class="hidden">
+    <label for="recipient">Recipient:</label>
+    <input type="text" id="recipient" required>
+    <br>
+    <label for="transferAmount">Amount:</label>
+    <input type="number" id="transferAmount" required>
+    <br>
+    <button type="submit">Transfer</button>
+</form>
+
+<!-- Set Payment Reminder -->
+<h2 class="hidden">Set Payment Reminder</h2>
+<form id="setReminderForm" class="hidden">
+    <label for="reminderDate">Date:</label>
+    <input type="date" id="reminderDate" required>
+    <br>
+    <button type="submit">Set Reminder</button>
+</form>
+
+<!-- View Payment Reminders -->
+<h2 class="hidden">Payment Reminders</h2>
+<ul id="paymentReminders" class="hidden"></ul>
+
+<!-- Pay Utility Bills -->
+<h2 class="hidden">Pay Utility Bills</h2>
+<form id="payUtilityForm" class="hidden">
+    <label for="utilityType">Utility Type:</label>
+    <select id="utilityType">
+        <option value="gas">Gas</option>
+        <option value="water">Water</option>
+        <option value="electricity">Electricity</option>
+        <option value="telephone">Telephone</option>
+    </select>
+    <br>
+    <label for="utilityAmount">Amount:</label>
+    <input type="number" id="utilityAmount" required>
+    <br>
+    <button type="submit">Pay</button>
+</form>
+
+<!-- Report Technical Issue -->
+<h2 class="hidden">Report Technical Issue</h2>
+<form id="reportIssueForm" class="hidden">
+    <label for="issueDescription">Issue Description:</label>
+    <textarea id="issueDescription" required></textarea>
+    <br>
+    <button type="submit">Report Issue</button>
+</form>
+
+<!-- Issue Resolution and Bank Announcements -->
+<h2 class="hidden">Issue Resolution and Bank Announcements</h2>
+<ul id="notifications" class="hidden"></ul>
+
+<!-- Report Credit Card Theft/Loss/Damage and Apply for Replacement -->
+<h2 class="hidden">Report Credit Card Theft/Loss/Damage and Apply for Replacement</h2>
+<form id="reportCreditCardIssueForm" class="hidden">
+    <label for="issueType">Issue Type:</label>
+    <select id="issueType">
+        <option value="theft">Theft</option>
+        <option value="loss">Loss</option>
+        <option value="damage">Damage</option>
+    </select>
+    <br>
+    <button type="submit">Report and Apply for Replacement</button>
+</form>
+
+
+    <script>
+        // Add your custom JavaScript code here
+        const registerForm = document.getElementById('registerForm');
+        const bankAccountForm = document.getElementById('bankAccountForm');
+        const creditCardForm = document.getElementById('creditCardForm');
+        const loanForm = document.getElementById('loanForm');
+        const transactions = document.getElementById('transactions');
+        const creditCardTransactions = document.getElementById('creditCardTransactions');
+        const points = document.getElementById('points');
+        const redeemPointsForm = document.getElementById('redeemPointsForm');
+        const payBillForm = document.getElementById('payBillForm');
+        const transferForm = document.getElementById('transferForm');
+        const setReminderForm = document.getElementById('setReminderForm');
+        const paymentReminders =document.getElementById('paymentReminders');
+        const payUtilityForm = document.getElementById('payUtilityForm');
+        const reportIssueForm = document.getElementById('reportIssueForm');
+        const notifications = document.getElementById('notifications');
+        const reportCreditCardIssueForm = document.getElementById('reportCreditCardIssueForm');
+
+        registerForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('User registered');
+            showElement(bankAccountForm.previousElementSibling);
+            showElement(bankAccountForm);
+        });
+
+        bankAccountForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('Bank account operation:', document.getElementById('accountType').value);
+            showElement(creditCardForm.previousElementSibling);
+            showElement(creditCardForm);
+        });
+
+        creditCardForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('Credit card application:', document.getElementById('cardType').value);
+            showElement(loanForm.previousElementSibling);
+            showElement(loanForm);
+        });
+
+        loanForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('Loan application:', document.getElementById('loanType').value, document.getElementById('loanAmount').value);
+            showElement(transactions.previousElementSibling);
+            showElement(transactions);
+            displayTransactions();
+        });
+
+        function displayTransactions() {
+            const dummyTransactions = [
+                { description: 'Purchase 1', amount: -50 },
+                { description: 'Purchase 2', amount: -25 },
+                { description: 'Deposit', amount: 100 },
+            ];
+
+            dummyTransactions.forEach(transaction => {
+                const li = document.createElement('li');
+                li.textContent = `${transaction.description}: ${transaction.amount}`;
+                transactions.appendChild(li);
+            });
+
+
+            showElement(redeemPointsForm.previousElementSibling);
+            showElement(redeemPointsForm);
+
+        }
+
+        function showElement(element) {
+            element.classList.remove('hidden');
+        }
+
+         // Add event listeners for all forms
+         redeemPointsForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const redeemAmount = parseFloat(redeemPointsForm.redeemAmount.value);
+            // Add your logic for redeeming points here
+            alert(`You have successfully redeemed ${redeemAmount} points.`);
+        });
+
+        payBillForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const paymentAmount = parseFloat(payBillForm.paymentAmount.value);
+            // Add your logic for paying credit card bills here
+            alert(`You have successfully paid ${paymentAmount} for your credit card bill.`);
+        });
+
+        transferForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const recipient = transferForm.recipient.value;
+            const transferAmount = parseFloat(transferForm.transferAmount.value);
+            // Add your logic for transferring money to other bank accounts here
+            alert(`You have successfully transferred ${transferAmount} to ${recipient}.`);
+        });
+
+        setReminderForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const reminderDate = setReminderForm.reminderDate.value;
+            // Add your logic for setting payment reminders here
+            const reminderElement = document.createElement('li');
+            reminderElement.textContent = `Payment reminder set for ${reminderDate}`;
+            paymentReminders.appendChild(reminderElement);
+        });
+
+        payUtilityForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const utilityType = payUtilityForm.utilityType.value;
+            const utilityAmount = parseFloat(payUtilityForm.utilityAmount.value);
+            // Add your logic for paying utility bills here
+            alert(`You have successfully paid ${utilityAmount} for your ${utilityType} bill.`);
+        });
+
+        reportIssueForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const issueDescription = reportIssueForm.issueDescription.value;
+            // Add your logic for reporting technical issues here
+            const notificationElement = document.createElement('li');
+            notificationElement.textContent = `Issue reported: ${issueDescription}`;
+            notifications.appendChild(notificationElement);
+        });
+
+        reportCreditCardIssueForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const issueType = reportCreditCardIssueForm.issueType.value;
+            // Add your logic for reporting credit card theft, loss, or damage and applying for a replacement here
+            alert(`You have successfully reported a credit card ${issueType} and applied for a replacement.`);
+        });
+
+        // Add any necessary custom functions for the remaining user journeys here
+    </script>
+</body>
+</html>

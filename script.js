@@ -1,69 +1,108 @@
-// Intiialize user class
-class User {
-    constructor(name, email, phone, address, username, password) {
-        this.name=name;
-        this.email=email;
-        this.phone=phone;
-        this.address=address;
-        this.username=username;
-        this.password=password;
-    }
-}
+        // Add your custom JavaScript code here
+        const registerForm = document.getElementById('registerForm');
+        const bankAccountForm = document.getElementById('bankAccountForm');
+        const creditCardForm = document.getElementById('creditCardForm');
+        const loanForm = document.getElementById('loanForm');
+        const transactions = document.getElementById('transactions');
+        const creditCardTransactions = document.getElementById('creditCardTransactions');
+        const points = document.getElementById('points');
+        const redeemPointsForm = document.getElementById('redeemPointsForm');
+        const payBillForm = document.getElementById('payBillForm');
+        const transferForm = document.getElementById('transferForm');
+        const setReminderForm = document.getElementById('setReminderForm');
+        const paymentReminders =document.getElementById('paymentReminders');
+        const payUtilityForm = document.getElementById('payUtilityForm');
+        const reportIssueForm = document.getElementById('reportIssueForm');
+        const notifications = document.getElementById('notifications');
+        const reportCreditCardIssueForm = document.getElementById('reportCreditCardIssueForm');
 
-// An array to hold users
-let users = [];
+        registerForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('User registered');
+        });
 
-// Create a 2 default users
-let defaultuser1 = new User("Mohamed Elazazy", "mohamed.elazazy@project.com", "01111111111", "GUC third settelment", "_elazazy", "12345678");
-let defaultuser2 = new User("Youssef Mostafa", "youssef.mostafa@project.com", "01222222222", "GUC third settelment", "_joe", "11223344");
-let defaultuser3 = new User("Nada Khaled", "nada.khaled@project.com", "01333333333", "GUC third settelment", "_nada", "87654321");
+        bankAccountForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('Bank account operation:', document.getElementById('accountType').value);
+        });
 
-// Add the default user to the array
-users.push(defaultuser1);
-users.push(defaultuser2);
-users.push(defaultuser3);
+        creditCardForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('Credit card application:', document.getElementById('cardType').value);
+        });
 
-// Log in function
-function login() {
+        loanForm.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('Loan application:', document.getElementById('loanType').value, document.getElementById('loanAmount').value);
+            displayTransactions();
+        });
 
-    // Read username & password fields
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+        function displayTransactions() {
+            const dummyTransactions = [
+                { description: 'Purchase 1', amount: -50 },
+                { description: 'Purchase 2', amount: -25 },
+                { description: 'Deposit', amount: 100 },
+            ];
 
-    // loop on users array to search for username & password
-    for (let i = 0; i < users.length; i++) {
-        if (username === users[i].username && password === users[i].password) {
-            alert("Login successful!");
-            return user[i];
+            dummyTransactions.forEach(transaction => {
+                const li = document.createElement('li');
+                li.textContent = `${transaction.description}: ${transaction.amount}`;
+                transactions.appendChild(li);
+            });
         }
-    }
 
-    // username & password are not found
-    alert("Invalid username or password.");
-}
+         // Add event listeners for all forms
+         redeemPointsForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const redeemAmount = parseFloat(redeemPointsForm.redeemAmount.value);
+            // Add your logic for redeeming points here
+            alert(`You have successfully redeemed ${redeemAmount} points.`);
+        });
 
-function signup() {
+        payBillForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const paymentAmount = parseFloat(payBillForm.paymentAmount.value);
+            // Add your logic for paying credit card bills here
+            alert(`You have successfully paid ${paymentAmount} for your credit card bill.`);
+        });
 
-    // Read fields
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let phone = document.getElementById("phone").value;
-    let address = document.getElementById("address").value;
-    let newusername = document.getElementById("newusername").value;
-    let newpassword = document.getElementById("newpassword").value;
+        transferForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const recipient = transferForm.recipient.value;
+            const transferAmount = parseFloat(transferForm.transferAmount.value);
+            // Add your logic for transferring money to other bank accounts here
+            alert(`You have successfully transferred ${transferAmount} to ${recipient}.`);
+        });
 
-    // check if username is used
-    for (let i = 0; i < users.length; i++) {
-        if (newusername === users[i].username) {
-            alert("User name is taken!! Please choose a new One");
-            return;
-        }
-    }
+        setReminderForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const reminderDate = setReminderForm.reminderDate.value;
+            // Add your logic for setting payment reminders here
+            const reminderElement = document.createElement('li');
+            reminderElement.textContent = `Payment reminder set for ${reminderDate}`;
+            paymentReminders.appendChild(reminderElement);
+        });
 
-    // If userName not found intialize a new user
-    let user = new User(name, email, phone, address, newusername, newpassword);
-    users.push(user);
+        payUtilityForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const utilityType = payUtilityForm.utilityType.value;
+            const utilityAmount = parseFloat(payUtilityForm.utilityAmount.value);
+            // Add your logic for paying utility bills here
+            alert(`You have successfully paid ${utilityAmount} for your ${utilityType} bill.`);
+        });
 
-    // Update users in local storage
-    alert("Sign up successful! Log In Please");
-}
+        reportIssueForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const issueDescription = reportIssueForm.issueDescription.value;
+            // Add your logic for reporting technical issues here
+            const notificationElement = document.createElement('li');
+            notificationElement.textContent = `Issue reported: ${issueDescription}`;
+            notifications.appendChild(notificationElement);
+        });
+
+        reportCreditCardIssueForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const issueType = reportCreditCardIssueForm.issueType.value;
+            // Add your logic for reporting credit card theft, loss, or damage and applying for a replacement here
+            alert(`You have successfully reported a credit card ${issueType} and applied for a replacement.`);
+        });

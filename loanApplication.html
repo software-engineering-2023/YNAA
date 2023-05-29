@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Loan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2 class="hidden">Apply for Loan</h2>
+    <form id="loanForm" class="hidden">
+        <label for="loanType">Loan Type:</label>
+        <select id="loanType">
+            <option value="personal">Personal</option>
+            <option value="car">Car</option>
+        </select>
+        <br>
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" id="loanAmount" required>
+        <br>
+        <button type="submit">Apply</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
