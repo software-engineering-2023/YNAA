@@ -91,6 +91,10 @@ function register() {
         let password = document.getElementById("password").value;
         
         if ((username === "_elazazy" && password ==="1") ||(username === "_joe" && password ==="1")) {
+           if(username === "_elazazy"){
+                sessionStorage.setItem("clientusername","_elazazy"); }
+            else {
+                 sessionStorage.setItem("clientusername","_joe"); }
             window.location.assign("clientHome.html");
         }
         else{
@@ -104,6 +108,24 @@ function register() {
  }
  
 
+ function opentheAcc() {
+    let accType = document.getElementById("accountType");
+    tempAcc = new Account(accType.value);
+
+    let clientusername = sessionStorage.getItem("clientusername");
+
+   
+        if (clientusername === "_elazazy") 
+            Client.clients[0].accounts.push(tempAcc);
+        else
+             Client.clients[1].accounts.push(tempAcc);
+
+         alert("new Account is opened successfully");
+         window.location.assign("clientHome.html");
+            
+}
+
+ 
 // Add your custom JavaScript code here
         const notifications = document.getElementById('notifications');
 
