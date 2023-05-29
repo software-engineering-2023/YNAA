@@ -41,7 +41,7 @@ class Account {
         Account.count++;
         this.accNumber = Account.count;
         this.status = "Running";
-        this.balance = 0;
+        this.balance = 1000;
         this.type=type;
     }
 }
@@ -105,6 +105,7 @@ function register() {
                 window.location.assign("adminHome.html");
             }
         }
+        
  }
  
 
@@ -124,6 +125,53 @@ function register() {
          window.location.assign("clientHome.html");
             
 }
+
+
+function viewtransactions(){
+    let username = sessionStorage.getItem("clientusername");
+    //alert( Client.clients[0].accounts[0].balance);
+    const dummyTransactions = [
+        { description: 'Purchase 1', amount: -50 },
+        { description: 'Purchase 2', amount: -25 },
+        { description: 'Deposit', amount: 100 },
+    ];
+   
+    const transactions = document.getElementById('transactions');
+    dummyTransactions.forEach(transaction => {
+        const li = document.createElement('li');
+        li.textContent = `${transaction.description}: ${transaction.amount}`;
+        transactions.appendChild(li);
+    });
+    if (username === "_elazazy") {
+         const li = document.createElement('li');
+         li.textContent =  "Current Balance = "+  sessionStorage.getItem("balance");
+         transactions.appendChild(li);
+    }
+    else {
+         //balance = Client.clients[1].accounts[0].balance;
+    }
+   
+
+}
+
+function reedeemPoints() {
+    let username = sessionStorage.getItem("clientusername");
+    const points = document.getElementById('redeemAmount').value;
+    
+    if (username === "_elazazy") {
+        Client.clients[0].accounts[0].balance += parseInt(points);
+        //alert("Points updated can be viewed from account transactions "+ Client.clients[0].accounts[0].balance);
+        sessionStorage.setItem("balance",Client.clients[0].accounts[0].balance);
+        window.location.assign("clientHome.html");
+    }
+    else {
+        Client.clients[1].accounts[0].balance += parseInt(points);
+        alert("Points updated can be viewed from account transactions");
+        window.location.assign("clientHome.html");
+
+    }
+}
+
 
  
 // Add your custom JavaScript code here
